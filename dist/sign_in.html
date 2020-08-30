@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录</title>
+</head>
+
+<body>
+    <h2>登录页面</h2>
+    <form action="" id="signIn">
+        <label><input type="text" name="name" placeholder="用户名"></label>
+        <label> <input type="password" name="password" placeholder="密码"></label>
+        <button class="btn" type="submit">登录</button>
+    </form>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>$form = $('#signIn');
+$form.on('submit', function (e) {
+  e.preventDefault();
+  var name = $form.find('input[name=name]').val();
+  var password = $form.find('input[name=password]').val();
+  console.log(name, password);
+  $.ajax({
+    method: 'POST',
+    url: '/signin',
+    contentType: 'text/json; charset =UTF-8',
+    data: JSON.stringify({
+      name: name,
+      password: password
+    })
+  }).then(function () {
+    alert("登录成功");
+    location.href = '/home.html';
+  }, function () {
+    alert("密码或者用户名错误");
+  });
+});</script>
+</body>
+
+</html>

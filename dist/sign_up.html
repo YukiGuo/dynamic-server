@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册</title>
+</head>
+
+<body>
+    <h2>注册页面</h2>
+    <form action="" id="signUp">
+        <label><input type="text" name="name" placeholder="用户名"></label>
+        <label> <input type="password" name="password" placeholder="密码"></label>
+        <button class="btn">注册</button>
+    </form>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>$form = $('#signUp');
+$form.on('submit', function (e) {
+  e.preventDefault();
+  var name = $form.find('input[name=name]').val();
+  var password = $form.find('input[name=password]').val();
+  console.log(name, password);
+  $.ajax({
+    method: 'POST',
+    url: '/signup',
+    contentType: 'text/json; charset =UTF-8',
+    data: JSON.stringify({
+      name: name,
+      password: password
+    })
+  }).then(function () {
+    alert("注册成功");
+    location.href = '/sign_in.html';
+  });
+});</script>
+</body>
+
+</html>
